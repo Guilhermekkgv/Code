@@ -140,8 +140,8 @@ function Linux.Create(config)
     local TabIndicator = Linux.Instance("Frame", {
         Parent = TabHolder,
         BackgroundColor3 = Linux.Theme.TabIndicator,
-        Size = UDim2.new(0, 4, 0, 28),
-        Position = UDim2.new(0, 0, 0, 5), -- Começa no topo (primeira aba)
+        Size = UDim2.new(0, 2, 0, 20), -- Tamanho ajustado: 2 pixels de largura, 20 pixels de altura
+        Position = UDim2.new(0, 5, 0, 9), -- Ajustado pra ficar dentro da aba (considerando padding)
         ZIndex = 3
     })
 
@@ -390,9 +390,9 @@ function Linux.Create(config)
             CurrentTab = tabIndex
 
             -- Animar a barrinha pra nova aba
-            local tabPositionY = (tabIndex - 1) * (28 + TabLayout.Padding.Offset) + TabPadding.PaddingTop.Offset
+            local tabPositionY = (tabIndex - 1) * (28 + TabLayout.Padding.Offset) + TabPadding.PaddingTop.Offset + 4 -- Ajuste pra centralizar na aba
             local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-            TweenService:Create(TabIndicator, tweenInfo, {Position = UDim2.new(0, 0, 0, tabPositionY)}):Play()
+            TweenService:Create(TabIndicator, tweenInfo, {Position = UDim2.new(0, 5, 0, tabPositionY)}):Play()
         end)
 
         Tabs[tabIndex] = {
