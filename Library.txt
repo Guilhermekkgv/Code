@@ -140,7 +140,8 @@ function Linux.Create(config)
         Parent = TabHolder,
         Padding = UDim.new(0, 3),
         HorizontalAlignment = Enum.HorizontalAlignment.Left,
-        VerticalAlignment = Enum.VerticalAlignment.Top
+        VerticalAlignment = Enum.VerticalAlignment.Top,
+        SortOrder = Enum.SortOrder.LayoutOrder
     })
 
     local TabPadding = Linux.Instance("UIPadding", {
@@ -193,11 +194,11 @@ function Linux.Create(config)
     local LinuxLib = {}
     local Tabs = {}
     local CurrentTab = nil
-    local TabCounter = 0
+    local tabOrder = 0
 
     function LinuxLib.Tab(config)
-        TabCounter = TabCounter + 1
-        local tabIndex = TabCounter
+        tabOrder = tabOrder + 1
+        local tabIndex = tabOrder
 
         local TabBtn = Linux.Instance("TextButton", {
             Parent = TabHolder,
@@ -208,7 +209,8 @@ function Linux.Create(config)
             TextColor3 = Linux.Theme.Text,
             TextSize = 14,
             ZIndex = 2,
-            AutoButtonColor = false
+            AutoButtonColor = false,
+            LayoutOrder = tabIndex
         })
 
         Linux.Instance("UICorner", {
