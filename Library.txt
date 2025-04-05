@@ -8,7 +8,7 @@ local Linux = {
         Accent = Color3.fromRGB(80, 120, 255),
         Text = Color3.fromRGB(220, 220, 220),
         Toggle = Color3.fromRGB(40, 40, 40),
-        TabActive = Color3.fromRGB(60, 60, 60),
+        TabActive = Color3.fromRGB(80, 120, 255),
         TabInactive = Color3.fromRGB(28, 28, 28),
         DropdownOption = Color3.fromRGB(30, 30, 30)
     }
@@ -199,7 +199,7 @@ function Linux.Create(Name)
             Size = UDim2.new(1, -5, 0, 28),
             Font = Enum.Font.SourceSans,
             Text = "",
-            TextColor3 = Color3.fromRGB(150, 150, 150),
+            TextColor3 = Linux.Theme.Text,
             TextSize = 14,
             ZIndex = 2,
             AutoButtonColor = false
@@ -218,7 +218,7 @@ function Linux.Create(Name)
                 Size = UDim2.new(0, 16, 0, 16),
                 Position = UDim2.new(0, 5, 0.5, -8),
                 Image = config.Icon.Image or "rbxassetid://10747384394",
-                ImageColor3 = Color3.fromRGB(150, 150, 150),
+                ImageColor3 = Linux.Theme.Text,
                 ZIndex = 2
             })
         end
@@ -230,7 +230,7 @@ function Linux.Create(Name)
             Position = UDim2.new(0, config.Icon and config.Icon.Enabled and 26 or 5, 0, 0),
             Font = Enum.Font.SourceSans,
             Text = config.Name,
-            TextColor3 = Color3.fromRGB(150, 150, 150),
+            TextColor3 = Linux.Theme.Text,
             TextSize = 14,
             TextXAlignment = Enum.TextXAlignment.Left,
             ZIndex = 2
@@ -285,16 +285,16 @@ function Linux.Create(Name)
             for tabName, tab in pairs(Tabs) do
                 tab.Content.Visible = false
                 tab.Button.BackgroundColor3 = Linux.Theme.TabInactive
-                tab.Text.TextColor3 = Color3.fromRGB(150, 150, 150)
+                tab.Text.TextColor3 = Linux.Theme.Text
                 if tab.Icon then
-                    tab.Icon.ImageColor3 = Color3.fromRGB(150, 150, 150)
+                    tab.Icon.ImageColor3 = Linux.Theme.Text
                 end
             end
             TabContent.Visible = true
             TabBtn.BackgroundColor3 = Linux.Theme.TabActive
-            TabText.TextColor3 = Color3.fromRGB(255, 255, 255)
+            TabText.TextColor3 = Linux.Theme.Text
             if TabIcon then
-                TabIcon.ImageColor3 = Color3.fromRGB(255, 255, 255)
+                TabIcon.ImageColor3 = Linux.Theme.Text
             end
             CurrentTab = config.Name
         end)
@@ -309,9 +309,9 @@ function Linux.Create(Name)
         if not CurrentTab then
             TabContent.Visible = true
             TabBtn.BackgroundColor3 = Linux.Theme.TabActive
-            TabText.TextColor3 = Color3.fromRGB(255, 255, 255)
+            TabText.TextColor3 = Linux.Theme.Text
             if TabIcon then
-                TabIcon.ImageColor3 = Color3.fromRGB(255, 255, 255)
+                TabIcon.ImageColor3 = Linux.Theme.Text
             end
             CurrentTab = config.Name
         end
@@ -552,7 +552,7 @@ function Linux.Create(Name)
                             Size = UDim2.new(1, -5, 0, 25),
                             Font = Enum.Font.SourceSans,
                             Text = tostring(opt),
-                            TextColor3 = opt == SelectedValue and Color3.fromRGB(255, 255, 255) or Linux.Theme.Text,
+                            TextColor3 = opt == SelectedValue and Linux.Theme.Accent or Linux.Theme.Text,
                             TextSize = 14,
                             TextXAlignment = Enum.TextXAlignment.Left,
                             ZIndex = 3,
@@ -569,7 +569,7 @@ function Linux.Create(Name)
                             Selected.Text = tostring(opt)
                             for _, btn in pairs(DropFrame:GetChildren()) do
                                 if btn:IsA("TextButton") then
-                                    btn.TextColor3 = btn.Text == tostring(opt) and Color3.fromRGB(255, 255, 255) or Linux.Theme.Text
+                                    btn.TextColor3 = btn.Text == tostring(opt) and Linux.Theme.Accent or Linux.Theme.Text
                                 end
                             end
                             spawn(function() config.Callback(opt) end)
@@ -603,7 +603,7 @@ function Linux.Create(Name)
                     Selected.Text = tostring(value)
                     for _, btn in pairs(DropFrame:GetChildren()) do
                         if btn:IsA("TextButton") then
-                            btn.TextColor3 = btn.Text == tostring(value) and Color3.fromRGB(255, 255, 255) or Linux.Theme.Text
+                            btn.TextColor3 = btn.Text == tostring(value) and Linux.Theme.Accent or Linux.Theme.Text
                         end
                     end
                     spawn(function() config.Callback(value) end)
